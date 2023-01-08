@@ -4,10 +4,9 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'package:todo_new/domain/auth/i_auth_facade.dart';
-import 'package:todo_new/domain/auth/value_objects.dart';
-
 import '../../../domain/auth/auth_failure.dart';
+import '../../../domain/auth/i_auth_facade.dart';
+import '../../../domain/auth/value_objects.dart';
 
 part 'sign_in_form_bloc.freezed.dart';
 part 'sign_in_form_event.dart';
