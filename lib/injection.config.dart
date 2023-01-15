@@ -13,9 +13,9 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:todo_new/application/auth/sign_in_form/sign_in_form_bloc.dart'
     as _i8;
 import 'package:todo_new/domain/auth/i_auth_facade.dart' as _i6;
+import 'package:todo_new/infrastructure/auth/firebase_auth_facade.dart' as _i7;
 import 'package:todo_new/infrastructure/core/firebase_injectable_module.dart'
     as _i9;
-import 'package:todo_new/infrastructure/firebase_auth_facade.dart' as _i7;
 
 /// ignore_for_file: unnecessary_lambdas
 /// ignore_for_file: lines_longer_than_80_chars
