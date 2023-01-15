@@ -29,78 +29,84 @@ class SignInForm extends StatelessWidget {
         autovalidateMode: state.showErrorMessages
             ? AutovalidateMode.always
             : AutovalidateMode.disabled,
-        child: ListView(children: [
-          SvgPicture.asset(
-            Assets.splash,
-            height: MediaQuery.of(context).size.height / 2,
-            fit: BoxFit.fitHeight,
-          ),
-          const SizedBox(height: 8),
-          TextFormField(
-            decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.email_rounded), labelText: "Email"),
-            onChanged: (emailStr) =>
-                BlocProvider.of<SignInFormBloc>(context).add(
-              SignInFormEvent.emailChanged(emailStr),
-            ),
-            validator: (_) => BlocProvider.of<SignInFormBloc>(context)
-                .state
-                .emailAddress
-                .value
-                .fold(
-                    (f) => f.maybeMap(
-                        invalidEmail: (_) => "Invalid Email",
-                        orElse: () => null),
-                    (_) => null),
-          ),
-          const SizedBox(height: 8),
-          TextFormField(
-            obscureText: true,
-            decoration: const InputDecoration(
-                prefixIcon: Icon(Icons.password_rounded),
-                labelText: "Password"),
-            onChanged: (passwordStr) =>
-                BlocProvider.of<SignInFormBloc>(context).add(
-              SignInFormEvent.passwordChanged(passwordStr),
-            ),
-            validator: (_) => BlocProvider.of<SignInFormBloc>(context)
-                .state
-                .password
-                .value
-                .fold(
-                    (f) => f.maybeMap(
-                        shortPassword: (_) => "Short Password",
-                        orElse: () => null),
-                    (_) => null),
-          ),
-          const SizedBox(height: 8),
-          Row(
+        child: ListView(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             children: [
-              Expanded(
-                child: TextButton(
-                  onPressed: () => BlocProvider.of<SignInFormBloc>(context).add(
-                    const SignInFormEvent.signInWithEmailAndPasswordPressed(),
-                  ),
-                  child: const Text("SIGN IN"),
-                ),
+              SvgPicture.asset(
+                Assets.splash,
+                height: MediaQuery.of(context).size.height / 2,
+                fit: BoxFit.fitHeight,
               ),
-              Expanded(
-                child: TextButton(
-                  onPressed: () => BlocProvider.of<SignInFormBloc>(context).add(
-                    const SignInFormEvent.registerWithEmailAndPasswordPressed(),
-                  ),
-                  child: const Text("REGISTER"),
+              const SizedBox(height: 8),
+              TextFormField(
+                decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.email_rounded), labelText: "Email"),
+                onChanged: (emailStr) =>
+                    BlocProvider.of<SignInFormBloc>(context).add(
+                  SignInFormEvent.emailChanged(emailStr),
                 ),
+                validator: (_) => BlocProvider.of<SignInFormBloc>(context)
+                    .state
+                    .emailAddress
+                    .value
+                    .fold(
+                        (f) => f.maybeMap(
+                            invalidEmail: (_) => "Invalid Email",
+                            orElse: () => null),
+                        (_) => null),
               ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          ElevatedButton(
-              onPressed: () => BlocProvider.of<SignInFormBloc>(context).add(
-                    const SignInFormEvent.signInWithGooglePressed(),
+              const SizedBox(height: 8),
+              TextFormField(
+                obscureText: true,
+                decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.password_rounded),
+                    labelText: "Password"),
+                onChanged: (passwordStr) =>
+                    BlocProvider.of<SignInFormBloc>(context).add(
+                  SignInFormEvent.passwordChanged(passwordStr),
+                ),
+                validator: (_) => BlocProvider.of<SignInFormBloc>(context)
+                    .state
+                    .password
+                    .value
+                    .fold(
+                        (f) => f.maybeMap(
+                            shortPassword: (_) => "Short Password",
+                            orElse: () => null),
+                        (_) => null),
+              ),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Expanded(
+                    child: TextButton(
+                      onPressed: () =>
+                          BlocProvider.of<SignInFormBloc>(context).add(
+                        const SignInFormEvent
+                            .signInWithEmailAndPasswordPressed(),
+                      ),
+                      child: const Text("SIGN IN"),
+                    ),
                   ),
-              child: const Text("SIGN IN WITH GOOGLE"))
-        ]),
+                  Expanded(
+                    child: TextButton(
+                      onPressed: () =>
+                          BlocProvider.of<SignInFormBloc>(context).add(
+                        const SignInFormEvent
+                            .registerWithEmailAndPasswordPressed(),
+                      ),
+                      child: const Text("REGISTER"),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+              ElevatedButton(
+                  onPressed: () => BlocProvider.of<SignInFormBloc>(context).add(
+                        const SignInFormEvent.signInWithGooglePressed(),
+                      ),
+                  child: const Text("SIGN IN WITH GOOGLE"))
+            ]),
       ),
     );
   }
