@@ -12,5 +12,5 @@ Future<void> main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   configureInjection(Environment.prod);
-  runApp(const AppWidget());
+  runApp(AppWidget());
 }

@@ -40,7 +40,7 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
         );
       }
 
-      if (event is _SignInWithGooglePressed) {
+      if (event is _SignInWithEmailAndPasswordPressed) {
         emit.forEach(
           _performActionOnAuthFacadeWithEmailAndPassword(
               _authFacade.signInWithEmailAndPassword),
