@@ -102,10 +102,16 @@ class SignInForm extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               ElevatedButton(
-                  onPressed: () => BlocProvider.of<SignInFormBloc>(context).add(
-                        const SignInFormEvent.signInWithGooglePressed(),
-                      ),
-                  child: const Text("SIGN IN WITH GOOGLE"))
+                onPressed: () => BlocProvider.of<SignInFormBloc>(context).add(
+                  const SignInFormEvent.signInWithGooglePressed(),
+                ),
+                child: const Text("SIGN IN WITH GOOGLE"),
+              ),
+              if (state.isSubmitting) ...[
+                const SizedBox(height: 8),
+                const LinearProgressIndicator()
+              ],
+              const SizedBox(height: 8),
             ]),
       ),
     );

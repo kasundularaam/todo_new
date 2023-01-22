@@ -99,12 +99,15 @@ class SignInFormBloc extends Bloc<SignInFormEvent, SignInFormState> {
 
       failureOrSuccess = await forwardedCall(
           emailAddress: state.emailAddress, password: state.password);
-      emit(
-        state.copyWith(
-          isSubmitting: false,
-          authFailureOrSuccess: some(failureOrSuccess),
-        ),
-      );
+
+      if (emit.isDone) {
+        emit(
+          state.copyWith(
+            isSubmitting: false,
+            authFailureOrSuccess: some(failureOrSuccess),
+          ),
+        );
+      }
     }
 
     emit(
